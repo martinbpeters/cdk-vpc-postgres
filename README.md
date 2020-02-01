@@ -1,5 +1,70 @@
 # Python CDK with VPC + Postgres DB
 
+## Installation
+
+### Python virtual environment
+```
+virtualenv aws_cdk.env
+cd aws_cdk.env
+source bin/activate
+```
+
+### Install AWS CDK 
+```
+npm install -g aws-cdk
+cdk --version
+cdk --help
+```
+No harm to read up the docs: https://docs.aws.amazon.com/cdk
+
+Install the dependencies:
+```
+pip install aws-cdk.aws-s3
+pip install aws-cdk.aws-ec2
+pip install aws-cdk.aws-rds
+pip install aws-cdk.aws-events-targets
+pip install -r requirements.txt
+```
+
+New versions come available, no harm in keeping up to date:
+```
+pip install --upgrade aws-cdk.core
+pip install --upgrade aws-cdk.aws-s3
+pip install --upgrade aws-cdk.aws-ec2
+pip install --upgrade aws-cdk.aws-rds
+pip install --upgrade aws-cdk.aws-events-targets
+```
+
+Set up your AWS profile file ~/.aws/config
+```
+[profile cdk_profile]
+aws_access_key_id=AKIAI44QH8DHBEXAMPLE
+aws_secret_access_key=je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY
+region=eu-west-1
+```
+
+Synthesizing the stacks. --no-version-reporting removes the `AWS::CDK::Metadata` resources and opts out of 
+module version reporting to AWS.
+. 
+```
+cdk --profile cdk_profile --no-version-reporting synth VPC AuroraServerless PostgresRDS
+```
+
+Deploying the stacks
+```
+cdk --profile cdk_profile --no-version-reporting deploy VPC AuroraServerless PostgresRDS
+```
+
+Destroy the stacks
+```
+cdk --profile cdk_profile --no-version-reporting destroy VPC AuroraServerless PostgresRDS
+```
+
+Debugging a stack
+```
+cdk --profile cdk_profile --no-version-reporting synth VPC  > vpc.yaml
+aws cloudformation validate-template --template-body file://vpc.yaml 
+```
 
 ## CDK Examples
 https://github.com/aws-samples/aws-cdk-examples/tree/master/python
@@ -7,7 +72,8 @@ https://github.com/aws-samples/aws-cdk-examples/tree/master/python
 https://github.com/aws-samples/aws-cdk-examples/tree/master/python/new-vpc-alb-asg-mysql
 https://github.com/aws-samples/aws-aurora-serverless-data-api-sam/blob/master/deploy_scripts/rds_cfn_template.yaml
 
-## CDK Python API 
+## CDK Python API
+https://docs.aws.amazon.com/cdk/api/latest/python 
 https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_ec2/Vpc.html
 https://docs.aws.amazon.com/cdk/api/latest/docs/aws-events-readme.html
 
