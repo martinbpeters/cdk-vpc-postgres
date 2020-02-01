@@ -1,0 +1,3 @@
+cdk.out
+stacks/__pycache__
+stacks/*.egg-info
