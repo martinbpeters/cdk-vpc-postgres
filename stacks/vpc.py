@@ -40,8 +40,8 @@ class VpcStack(core.Stack):
             enable_dns_support=True
         )
 
-        core.Tag(key="Application", value="AWS::StackName") \
-            .add(self.vpc, key="Application", value="AWS::StackName")
+        core.Tag(key="Application", value=self.stack_name) \
+            .add(self.vpc, key="Application", value=self.stack_name)
         # core.Tag("Network", "Public").add(vpc)
         # core.Tag("Name", "VPCName-Environment").add(vpc)
         # core.Tag("Environment", "Environment").add(vpc)

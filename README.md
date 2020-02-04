@@ -2,7 +2,10 @@
 AWS Cloud Development Kit (AWS CDK) is a software development framework for 
 defining cloud infrastructure in code and provisioning it through AWS 
 CloudFormation. Here's a python example for building a VPC, Bastion host and a 
-Postgres database using RDS (provisioned or serverless).
+Postgres database using RDS (provisioned or serverless). Here's a general view of the 
+architecture.
+
+![Arch](images/CDK-VPC-Aurora.png)
 
 ## Installation
 
